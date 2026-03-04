@@ -203,7 +203,31 @@ export default function App() {
      Implement fetch logic inside this useEffect.
      ========================================================= */
   useEffect(() => {
-    // TODO 2.1: Implement fetching users here (see lab instructions)
+    async function fetchUsers() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+
+        const data = await response.json();
+
+        setUsers(data);
+        setFilteredUsers(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUsers();
   }, []);
 
   /* =========================================================
@@ -214,7 +238,15 @@ export default function App() {
      Dependency array MUST be: [searchTerm, users]
      ========================================================= */
   useEffect(() => {
-    // TODO 2.2: Implement filtering users here (see lab instructions)
+    if (searchTerm === "") {
+      setFilteredUsers(users);
+    } else {
+      const filtered = users.filter((user) =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      setFilteredUsers(filtered);
+    }
   }, [searchTerm, users]);
 
   // Modal handlers (already complete)
