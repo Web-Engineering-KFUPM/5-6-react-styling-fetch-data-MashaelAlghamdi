@@ -135,7 +135,7 @@ Implement:
 - Title MUST be: "User Details"
 - Body MUST show:
   - Large avatar: first letter of user name (CSS class "user-avatar-large")
-  - Name, Email, Phone, Website (each in its own <p>)
+  - Name, Email, Phone, Website (each in it own <p>)
 - Footer MUST have ONE Close button that triggers onHide
 
 Hint:
@@ -232,7 +232,7 @@ export default function App() {
 
   /* =========================================================
      TODO 2.2 — FILTER USERS BY NAME
-     File: src/App.jsx
+     
      ---------------------------------------------------------
      Implement filtering logic inside this useEffect.
      Dependency array MUST be: [searchTerm, users]
